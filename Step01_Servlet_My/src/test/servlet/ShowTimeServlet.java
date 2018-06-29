@@ -21,7 +21,7 @@ public class ShowTimeServlet extends HttpServlet{
 	//2. service() 메소드 오버라이딩
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+							//요청을한 클라이언트의 정보//응답을하기 위해 필요한 도구
 		//응답 인코딩 설정
 		response.setCharacterEncoding("utf-8");
 		//응답 컨텐츠 설정
