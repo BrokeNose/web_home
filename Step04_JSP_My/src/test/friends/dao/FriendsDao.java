@@ -22,6 +22,34 @@ public class FriendsDao {
 		return dao;
 	}
 	
+	//회원 한명의 정보를 수정하는 메소드
+	public boolean update(FriendsDto dto) {
+		Connection conn=null;
+		PreparedStatement pstmt=null;
+		int flag=0;
+		try {
+			conn= new DBConnect().getConn();
+			String sql="UPDATE friends SET name=?,addr=?"
+					+" WHERE num=?";
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1, dto.getName());
+			pstmt.setString(2, dto.getPhone());
+			pstmt.setInt(3, dto.getNum());
+			flag=pstmt.executeUpdate();					
+		}catch(SQLException se) {
+			se.printStackTrace();
+		}finally {
+			try {
+				if(pstmt!=null)pstmt.close();
+				if(conn!=null)conn.close();
+			}catch(Exception e) {}
+		}
+		if(flag>0) {
+			return true;
+		}else {
+			return false;
+		}
+	}
 	//회원 한명의 정보를 리턴하는 메소드
 	public FriendsDto getData(int num) {
 		Connection conn=null;
@@ -50,9 +78,9 @@ public class FriendsDao {
 				if(conn!=null)conn.close();
 				if(pstmt!=null)pstmt.close();
 			} catch (Exception e) {}
-			return dto;
 		}
-	
+		return dto;
+	}
 	
 	//친구 정보를 삭제하는 메소드
 	public boolean delete(int num) {

@@ -25,6 +25,7 @@
 				<th>번호</th>
 				<th>이름</th>
 				<th>핸드폰 번호</th>
+				<th>수정</th>
 				<th>삭제</th>
 			</tr>
 		</thead>
@@ -34,6 +35,7 @@
 				<td><%=tmp.getNum() %></td>
 				<td><%=tmp.getName() %></td>
 				<td><%=tmp.getPhone() %></td>
+				<td><a href="update.jsp?num=<%=tmp.getNum() %>">수정</a></td>
 				<td><a href="delete.jsp?num=<%=tmp.getNum() %>">삭제</a></td>
 			</tr>
 		<%} %>
